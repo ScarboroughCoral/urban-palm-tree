@@ -29,6 +29,7 @@ jobs:
     - run: yarn build
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
-      with: github_token: ${{ secrets.DEPLOY_TOKEN }}
-      publish_dir: ./dist
-      BUILD_SCRIPT: yarn install && yarn run build
+      with:
+        github_token: ${{ secrets.DEPLOY_TOKEN }}
+        publish_dir: ./dist
+        BUILD_SCRIPT: yarn install && yarn run build
