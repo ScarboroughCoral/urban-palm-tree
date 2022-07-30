@@ -26,12 +26,11 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+    - run: yarn
     - run: yarn build
-    
-    - name: Build and Deploy
-      uses: JamesIves/github-pages-deploy-action@v3
-      env:
-        ACCESS_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
-        BRANCH: gh-pages
-        FOLDER: dist
-        BUILD_SCRIPT: yarn install && yarn run build
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./dist
+
